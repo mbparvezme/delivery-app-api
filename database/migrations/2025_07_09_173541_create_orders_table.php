@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Customer
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade');
             $table->foreignId('delivery_man_id')->nullable()->constrained('delivery_men')->onDelete('set null');
             $table->string('delivery_address');
@@ -21,12 +21,11 @@ return new class extends Migration
             $table->decimal('delivery_longitude', 11, 8);
             $table->enum('status', [
                 'pending',
-                'failed_validation',
-                'validated',
                 'preparing',
                 'out_for_delivery',
                 'delivered',
-                'cancelled'
+                'cancelled',
+                'on_hold'
             ])->default('pending');
             $table->decimal('total_amount', 8, 2);
             $table->timestamps();
