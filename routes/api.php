@@ -12,9 +12,9 @@ Route::prefix('v1')->group(function () {
     Route::get('restaurants/{restaurant}', [RestaurantController::class, 'show']);
 
     // Authenticated routes
+    Route::post('restaurants', [RestaurantController::class, 'store']);
+    Route::put('restaurants/{restaurant}', [RestaurantController::class, 'update']);
+    Route::delete('restaurants/{restaurant}', [RestaurantController::class, 'destroy']);
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('restaurants', [RestaurantController::class, 'store']);
-        Route::put('restaurants/{restaurant}', [RestaurantController::class, 'update']);
-        Route::delete('restaurants/{restaurant}', [RestaurantController::class, 'destroy']);
     });
 });

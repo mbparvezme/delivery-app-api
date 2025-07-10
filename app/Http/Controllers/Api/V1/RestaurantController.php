@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Restaurant\StoreRestaurantRequest;
+use App\Http\Requests\V1\Restaurant\UpdateRestaurantRequest;
 use Illuminate\Http\Request;
 use App\Models\V1\Restaurant;
 use Illuminate\Http\JsonResponse;
 
 class RestaurantController extends Controller
 {
+    
     public function index(): JsonResponse
     {
-        $restaurants = Restaurant::latest()->paginate(15);
+        $restaurants = Restaurant::latest()->active()->paginate(15);
         return response()->json($restaurants);
     }
 
@@ -43,7 +46,7 @@ class RestaurantController extends Controller
         if ($request->user()->id !== $restaurant->user_id) {
             return response()->json(['message' => 'Forbidden'], 403);
         }
-        $restaurant->delete();
+        $restaurant->deactivate();
         return response()->json(null, 204);
     }
 
