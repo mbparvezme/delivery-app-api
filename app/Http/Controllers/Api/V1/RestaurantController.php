@@ -21,7 +21,7 @@ class RestaurantController extends Controller
     public function store(StoreRestaurantRequest $request): JsonResponse
     {
         $validatedData = $request->validated();
-        $validatedData['user_id'] = $request->user()->id;
+        $validatedData['user_id'] = env('NO_AUTH') == 1 ? 2 : $request->user()->id;
         $restaurant = Restaurant::create($validatedData);
         return response()->json($restaurant, 201);
     }
@@ -29,7 +29,7 @@ class RestaurantController extends Controller
     public function show($restaurant): JsonResponse
     {
         $data = Restaurant::select("id", "user_id", "name", "address", "latitude", "longitude")
-        ->with(['deliveryZones:id,restaurant_id,name,type,coordinates'])
+        ->with(['deliveryZones:id,restaurant_id,name,type,value'])->active()
         ->findOrFail($restaurant);
         return response()->json($data);
     }

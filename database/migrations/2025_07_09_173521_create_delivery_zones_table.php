@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade');
             $table->string('name');
             $table->enum('type', ['radius', 'polygon']);
-            $table->json('coordinates');
-            $table->boolean('is_active')->default(true);
+            $table->json('value');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

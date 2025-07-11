@@ -19,8 +19,8 @@ class DeliveryZone extends BaseModel
         'restaurant_id',
         'name',
         'type',
-        'coordinates',
-        'is_active',
+        'value',
+        'active',
     ];
 
     /**
@@ -29,8 +29,8 @@ class DeliveryZone extends BaseModel
      * @var array<string, string>
      */
     protected $casts = [
-        'coordinates' => 'array',
-        'is_active' => 'boolean',
+        'value' => 'array',
+        'active' => 'boolean',
     ];
 
     /**

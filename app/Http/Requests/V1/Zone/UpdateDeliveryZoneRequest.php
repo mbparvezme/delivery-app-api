@@ -23,7 +23,7 @@ class UpdateDeliveryZoneRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|required|string|max:255',
-            'is_active' => 'sometimes|boolean',
+            'active' => 'sometimes|boolean',
         ];
     }
 }

@@ -25,25 +25,19 @@ class StoreDeliveryZoneRequest extends FormRequest
         $rules = [
             'name' => 'required|string|max:255',
             'type' => ['required', Rule::in(['radius', 'polygon'])],
-            'is_active' => 'sometimes|boolean',
+            'active' => 'sometimes|boolean',
         ];
 
-        // If the type is 'polygon', the coordinates field itself is the array of points.
         if ($this->input('type') === 'polygon') {
             return array_merge($rules, [
-                'coordinates' => 'required|array|min:3',
-                'coordinates.*.lat' => 'required|numeric|between:-90,90',
-                'coordinates.*.lng' => 'required|numeric|between:-180,180',
+                'value' => 'required|array|min:3',
+                'value.*.lat' => 'required|numeric|between:-90,90',
+                'value.*.lng' => 'required|numeric|between:-180,180',
             ]);
         }
 
-        // Otherwise (for 'radius'), the coordinates field is an object with keys.
         return array_merge($rules, [
-            'coordinates' => 'required|array',
-            'coordinates.center' => 'required|array',
-            'coordinates.center.lat' => 'required|numeric|between:-90,90',
-            'coordinates.center.lng' => 'required|numeric|between:-180,180',
-            'coordinates.radius' => 'required|numeric|min:0',
+            'value' => 'required|numeric|min:0',
         ]);
     }
 }

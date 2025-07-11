@@ -40,10 +40,11 @@ class DeliveryZoneController extends Controller
     /**
      * Display the specified delivery zone.
      */
-    public function show(Request $request, Restaurant $restaurant, DeliveryZone $zone): JsonResponse
+    public function show($restaurant, $zone): JsonResponse
     {
         // Gate::authorize('view', [$restaurant, $zone]);
-        return response()->json($zone);
+        $data = DeliveryZone::select("id", "restaurant_id", "name", "type", "value")->with("restaurant:id,name,address,latitude,longitude")->findOrFail($zone);
+        return response()->json($data);
     }
 
     /**
