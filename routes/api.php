@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\V1\RestaurantController;
+use App\Http\Controllers\Api\V1\DeliveryZoneController;
 
 
 Route::prefix('v1')->group(function () {
@@ -12,9 +13,14 @@ Route::prefix('v1')->group(function () {
     Route::get('restaurants/{restaurant}', [RestaurantController::class, 'show']);
 
     // Authenticated routes
-    Route::post('restaurants', [RestaurantController::class, 'store']);
-    Route::put('restaurants/{restaurant}', [RestaurantController::class, 'update']);
-    Route::delete('restaurants/{restaurant}', [RestaurantController::class, 'destroy']);
-    Route::middleware('auth:sanctum')->group(function () {
-    });
+    // Route::middleware('auth:sanctum')->group(function () {
+        Route::post('restaurants', [RestaurantController::class, 'store']);
+        Route::put('restaurants/{restaurant}', [RestaurantController::class, 'update']);
+        Route::delete('restaurants/{restaurant}', [RestaurantController::class, 'destroy']);
+
+        Route::prefix('restaurants/{restaurant}')->as('restaurants.')->group(function () {
+            Route::apiResource('zones', DeliveryZoneController::class);
+        });
+
+    // });
 });

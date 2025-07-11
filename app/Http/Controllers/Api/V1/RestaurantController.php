@@ -11,10 +11,10 @@ use Illuminate\Http\JsonResponse;
 
 class RestaurantController extends Controller
 {
-    
+
     public function index(): JsonResponse
     {
-        $restaurants = Restaurant::latest()->active()->paginate(15);
+        $restaurants = Restaurant::select(["id", "user_id", "name", "address", "latitude", "longitude"])->latest()->active()->paginate(15);
         return response()->json($restaurants);
     }
 
@@ -26,9 +26,12 @@ class RestaurantController extends Controller
         return response()->json($restaurant, 201);
     }
 
-    public function show(Restaurant $restaurant): JsonResponse
+    public function show($restaurant): JsonResponse
     {
-        return response()->json($restaurant);
+        $data = Restaurant::select("id", "user_id", "name", "address", "latitude", "longitude")
+        ->with(['deliveryZones:id,restaurant_id,name,type,coordinates'])
+        ->findOrFail($restaurant);
+        return response()->json($data);
     }
 
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant): JsonResponse
