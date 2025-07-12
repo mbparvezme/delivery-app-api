@@ -2,10 +2,12 @@
 
 namespace App\Models\V1;
 
+use Database\Factories\V1\RestaurantFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\BaseModel;
+use App\Models\User;
 
 class Restaurant extends BaseModel
 {
@@ -23,6 +25,12 @@ class Restaurant extends BaseModel
         'latitude',
         'longitude',
     ];
+
+    // Add this method to link the factory
+    protected static function newFactory()
+    {
+        return RestaurantFactory::new();
+    }
 
     /**
      * The attributes that should be cast.
