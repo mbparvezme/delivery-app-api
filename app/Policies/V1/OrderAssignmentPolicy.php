@@ -2,8 +2,8 @@
 
 namespace App\Policies\V1;
 
+use App\Models\User;
 use App\Models\V1\OrderAssignment;
-use App\Models\V1\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class OrderAssignmentPolicy

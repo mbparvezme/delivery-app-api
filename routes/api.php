@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\V1\DeliveryPersonController;
 use App\Http\Controllers\Api\V1\DeliveryZoneController;
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Controllers\Api\V1\DeliveryAssignmentController;
 
@@ -24,6 +25,11 @@ Route::prefix('v1')->group(function () {
             Route::apiResource('zones', DeliveryZoneController::class);
         });
 
+        Route::post('orders', [OrderController::class, 'store']);
+        Route::get('orders', [OrderController::class, 'index']);
+        Route::get('orders/{order}', [OrderController::class, 'show']);
+        Route::post('orders/{order}/cancel', [OrderController::class, 'cancel']);
+
         Route::put('delivery-person/status', [DeliveryPersonController::class, 'updateStatus']);
 
         Route::post('orders/{order}/assign', [DeliveryAssignmentController::class, 'assign']);
@@ -35,3 +41,7 @@ Route::prefix('v1')->group(function () {
 
     // });
 });
+
+
+
+// ... other routes

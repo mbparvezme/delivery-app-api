@@ -2,8 +2,8 @@
 
 namespace App\Policies\V1;
 
-use App\Models\DeliveryZone;
 use App\Models\User;
+use App\Models\V1\DeliveryZone;
 use Illuminate\Auth\Access\Response;
 
 class DeliveryZonePolicy

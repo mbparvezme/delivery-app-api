@@ -3,7 +3,7 @@
 namespace App\Services\V1;
 
 use App\Models\V1\DeliveryMan;
-use App\Models\V1\User;
+use App\Models\User;
 
 class DeliveryPersonService
 {

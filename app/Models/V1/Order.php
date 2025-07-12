@@ -2,10 +2,12 @@
 
 namespace App\Models\V1;
 
+use Database\Factories\V1\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\BaseModel;
+use App\Models\User;
 
 class Order extends BaseModel
 {
@@ -26,6 +28,11 @@ class Order extends BaseModel
         'status',
         'total_amount',
     ];
+
+    protected static function newFactory()
+    {
+        return OrderFactory::new();
+    }
 
     /**
      * The attributes that should be cast.

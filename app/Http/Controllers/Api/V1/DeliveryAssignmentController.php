@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\V1\Order;
+use App\Models\V1\OrderAssignment;
 use App\Services\V1\DeliveryAssignmentService;
 use Illuminate\Http\JsonResponse;
 
