@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Models\DeliveryZone;
 use App\Policies\V1\DeliveryZonePolicy;
+
+use App\Models\OrderAssignment;
+use App\Policies\V1\OrderAssignmentPolicy;
+
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         DeliveryZone::class => DeliveryZonePolicy::class,
+        OrderAssignment::class => OrderAssignmentPolicy::class,
     ];
 
     /**
