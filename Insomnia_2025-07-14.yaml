@@ -1,0 +1,1233 @@
+type: collection.insomnia.rest/5.0
+name: Delivery API
+meta:
+  id: wrk_9dc2118fcd5a4cb8ab9aa4e2347308ea
+  created: 1752173328770
+  modified: 1752173328770
+  description: ""
+collection:
+  - name: Customer
+    meta:
+      id: fld_5f75fcfc3e5e479e84dae26184160363
+      created: 1752363217002
+      modified: 1752432494137
+      sortKey: -1747876768919.6875
+      description: ""
+    children:
+      - name: Auth
+        meta:
+          id: fld_d750356099ed4c6da5dfed89a013d40d
+          created: 1752421775298
+          modified: 1752421788667
+          sortKey: -1752363243675
+          description: ""
+        children:
+          - url: "{{ _.BASE_URL }}/login"
+            name: Login
+            meta:
+              id: req_ed276732e514465ba3507b17c0c91362
+              created: 1752421775301
+              modified: 1752423157902
+              isPrivate: false
+              description: ""
+              sortKey: -1752417894084
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "email": "customer1@example.com",
+                  "password": "password"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.BASE_URL }}/logout"
+            name: Logout
+            meta:
+              id: req_cc2c51754d5141e49409c70a2c96afb3
+              created: 1752421775303
+              modified: 1752433912952
+              isPrivate: false
+              description: ""
+              sortKey: -1752390568829.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            authentication:
+              type: bearer
+              token: "{{ _.TKN_CUSTOMER }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - url: "{{ _.BASE_URL }}/orders"
+        name: Place Order 1
+        meta:
+          id: req_916d70ade6524e26a12828455ecc77e4
+          created: 1752363239605
+          modified: 1752433892924
+          isPrivate: false
+          description: ""
+          sortKey: -1752363243575
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "restaurant_id": 1,
+                "delivery_address": "House 10, Road 5, Gulshan, Dhaka",
+                "delivery_latitude": 23.7930,
+                "delivery_longitude": 90.4135,
+                "total_amount": 1500.00
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        authentication:
+          type: bearer
+          token: "{{ _.TKN_CUSTOMER }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.BASE_URL }}/orders"
+        name: Place Order 2
+        meta:
+          id: req_8a1cb6735224421eb74cb215fb045d05
+          created: 1752419429462
+          modified: 1752433901354
+          isPrivate: false
+          description: ""
+          sortKey: -1752269476236
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "restaurant_id": 2,
+                "delivery_address": "Far away, Savar",
+                "delivery_latitude": 23.8563,
+                "delivery_longitude": 90.2579,
+                "total_amount": 800.00
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        authentication:
+          type: bearer
+          token: "{{ _.TKN_CUSTOMER }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Restaurant
+    meta:
+      id: fld_4db3e5a8357142cbbbb20577de61a166
+      created: 1752421043130
+      modified: 1752433498215
+      sortKey: -1752421043130
+      description: ""
+    children:
+      - name: Manage Restaurant
+        meta:
+          id: fld_9cc1b713e2fd412ba4555aa7a28524c8
+          created: 1752175698830
+          modified: 1752421170460
+          sortKey: -1752421142486
+          description: ""
+        children:
+          - name: Restaurant 2 Zone
+            meta:
+              id: fld_9137460930c14f289fbfc7603d185a6b
+              created: 1752248676745
+              modified: 1752431477993
+              sortKey: -1752427444009.125
+              description: ""
+            children:
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones"
+                name: All
+                meta:
+                  id: req_49035cd7348640a4bb6c696bf8642129
+                  created: 1752248676749
+                  modified: 1752433654549
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708797
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones/1"
+                name: Update
+                meta:
+                  id: req_feb2c0a458fa4220979035cb04b8b956
+                  created: 1752248676754
+                  modified: 1752433671234
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708734.5
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                        "name": "Main Area 1"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones/1"
+                name: Delete
+                meta:
+                  id: req_0af4c56c587f449292854ca1566be922
+                  created: 1752248676757
+                  modified: 1752433680833
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708697
+                method: DELETE
+                body:
+                  mimeType: application/json
+                  text: ""
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones/1"
+                name: Single
+                meta:
+                  id: req_831887edefce4efb8c7f8c4d8d0b7488
+                  created: 1752248676759
+                  modified: 1752433661264
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708772
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones"
+                name: Store Polygon Zone
+                meta:
+                  id: req_9d76d9b71b204d1c9763a39b7dd37853
+                  created: 1752251436181
+                  modified: 1752433648684
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708847
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                        "restaurant_id": 1,
+                        "name": "Sub Area",
+                        "type": "polygon",
+                        "value": [
+                            { "lat": 23.74, "lng": 90.37 },
+                            { "lat": 23.76, "lng": 90.37 },
+                            { "lat": 23.76, "lng": 90.39 },
+                            { "lat": 23.74, "lng": 90.39 }
+                        ]
+                      }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones"
+                name: Store Radius Zone
+                meta:
+                  id: req_523ab09c0bff49eeb266cc3b1df84209
+                  created: 1752251449041
+                  modified: 1752433642852
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708872
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |
+                    {
+                        "name": "R2 - 4km Radius",
+                        "type": "radius",
+                        "value": 4000
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                    id: pair_6037df4c5f03450aa2478ddd87a97eff
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                    id: pair_f4185e61d81d4e56be75f576f075872e
+                  - id: pair_5af441e4ff454bdbb60c7f3c3ba1db0d
+                    name: Accept
+                    value: application/json
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Restaurant 1
+            meta:
+              id: fld_865b38836fa14dc9b119552e91d1be4f
+              created: 1752431224863
+              modified: 1752431224863
+              sortKey: -1752431224863
+              description: ""
+            children:
+              - url: "{{ _.BASE_URL }}/restaurants"
+                name: Store
+                meta:
+                  id: req_dfbe02d115e8402a919b388adbff681c
+                  created: 1752174730559
+                  modified: 1752433516379
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752431276880
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |
+                    {
+                      "name": "Pizza Hub",
+                      "address": "123 Main Street, Dhaka",
+                      "latitude": 23.81033200,
+                      "longitude": 90.41251800
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1"
+                name: Update
+                meta:
+                  id: req_50590db8630f46179648321401e13236
+                  created: 1752175540289
+                  modified: 1752433523415
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752431276830
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |
+                    {
+                      "name": "Pizza Hub",
+                      "address": "123 Main Street, Kushtia"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1"
+                name: Delete
+                meta:
+                  id: req_1a01692f91b2425dbe332fc1537a76b6
+                  created: 1752175601542
+                  modified: 1752433529059
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752431276805
+                method: DELETE
+                body:
+                  mimeType: application/json
+                  text: ""
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Restaurant 2
+            meta:
+              id: fld_c18a8fe788374d898b5855f1b13cb24f
+              created: 1752431318772
+              modified: 1752431466117
+              sortKey: -1752428074151.4375
+              description: ""
+            children:
+              - url: "{{ _.BASE_URL }}/restaurants"
+                name: Store
+                meta:
+                  id: req_648f9131995343fb9a23de38b2e5a17d
+                  created: 1752431318778
+                  modified: 1752433612633
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752431276880
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |
+                    {
+                      "name": "Pizza Hub",
+                      "address": "123 Main Street, Dhaka",
+                      "latitude": 23.81033200,
+                      "longitude": 90.41251800
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1"
+                name: Update
+                meta:
+                  id: req_97932c9ad8404a8c9a5d91a8b187f447
+                  created: 1752431318781
+                  modified: 1752433620908
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752431276830
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |
+                    {
+                      "name": "Pizza Hub",
+                      "address": "123 Main Street, Kushtia"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1"
+                name: Delete
+                meta:
+                  id: req_b56ce3c4f7044502af0c206243a4863f
+                  created: 1752431318784
+                  modified: 1752433626631
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752431276805
+                method: DELETE
+                body:
+                  mimeType: application/json
+                  text: ""
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Restaurant 1 Zone
+            meta:
+              id: fld_c818ddc9317044e4888e0ff687997ec7
+              created: 1752431366287
+              modified: 1752431470472
+              sortKey: -1752428704293.75
+              description: ""
+            children:
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones"
+                name: All
+                meta:
+                  id: req_362be8a3d74a44d1a3a461ae4e7cbe4c
+                  created: 1752431366289
+                  modified: 1752433568914
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708797
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones/1"
+                name: Update
+                meta:
+                  id: req_1038c0f403584d80b2b54f26e11e599d
+                  created: 1752431366292
+                  modified: 1752433585514
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708734.5
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                        "name": "Main Area 1"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones/1"
+                name: Delete
+                meta:
+                  id: req_f3f31cb85199468bb0a7b268d15fe8a9
+                  created: 1752431366294
+                  modified: 1752433595527
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708697
+                method: DELETE
+                body:
+                  mimeType: application/json
+                  text: ""
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones/1"
+                name: Single
+                meta:
+                  id: req_44ad0d8867d940d48742e24e4b016bcc
+                  created: 1752431366295
+                  modified: 1752433575210
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708772
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones"
+                name: Store Polygon Zone
+                meta:
+                  id: req_fb24ba33e2d348c292a00a8431e92221
+                  created: 1752431366297
+                  modified: 1752433559078
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708847
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                        "restaurant_id": 1,
+                        "name": "Sub Area",
+                        "type": "polygon",
+                        "value": [
+                            { "lat": 23.78, "lng": 90.40 },
+                            { "lat": 23.80, "lng": 90.40 },
+                            { "lat": 23.80, "lng": 90.42 },
+                            { "lat": 23.78, "lng": 90.42 }
+                        ]
+                      }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/restaurants/1/zones"
+                name: Store Radius Zone
+                meta:
+                  id: req_4ed28b768f7e4e7cbb817707f0bce084
+                  created: 1752431366299
+                  modified: 1752433552900
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752175708872
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                        "name": "R1 - 3km Radius",
+                        "type": "radius",
+                        "value": 3000
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                    id: pair_6037df4c5f03450aa2478ddd87a97eff
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                    id: pair_f4185e61d81d4e56be75f576f075872e
+                  - id: pair_5af441e4ff454bdbb60c7f3c3ba1db0d
+                    name: Accept
+                    value: application/json
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_RESTAURANT }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+      - name: Auth
+        meta:
+          id: fld_116fac42f8484c7daca3be2651e636d0
+          created: 1752371415252
+          modified: 1752431344898
+          sortKey: -1752421142586
+          description: ""
+        children:
+          - url: "{{ _.BASE_URL }}/login"
+            name: Login
+            meta:
+              id: req_43b8f270b19b4d57a0abae8c4b784bbc
+              created: 1752417866144
+              modified: 1752419032824
+              isPrivate: false
+              description: ""
+              sortKey: -1752417894084
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "email": "owner1@example.com",
+                  "password": "password"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.BASE_URL }}/logout"
+            name: Logout
+            meta:
+              id: req_293313947e38462c93e19d01c203876b
+              created: 1752419037012
+              modified: 1752433424344
+              isPrivate: false
+              description: ""
+              sortKey: -1752390568829.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            authentication:
+              type: bearer
+              token: "{{ _.TKN_RESTAURANT }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - url: "{{ _.BASE_URL }}/restaurants"
+        name: All
+        meta:
+          id: req_f3adb05be34d4d8786983363c1b6e661
+          created: 1752173350884
+          modified: 1752433486090
+          isPrivate: false
+          description: ""
+          sortKey: -1752421142686
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        authentication:
+          type: bearer
+          token: "{{ _.TKN_RESTAURANT }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.BASE_URL }}/restaurants/1"
+        name: Single
+        meta:
+          id: req_97855f77a22b47d48de6f35c104cbea1
+          created: 1752245955568
+          modified: 1752433490699
+          isPrivate: false
+          description: ""
+          sortKey: -1752421142636
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        authentication:
+          type: bearer
+          token: "{{ _.TKN_RESTAURANT }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Delivery Person
+    meta:
+      id: fld_c180b9f588984910b9ea2a194c0bc40d
+      created: 1752421813404
+      modified: 1752432311074
+      sortKey: -1748785623761.75
+      description: ""
+    children:
+      - name: Person 1
+        meta:
+          id: fld_3d058d14083843dfb8fd7748f654fae6
+          created: 1752432173078
+          modified: 1752432185671
+          sortKey: -1752432182910
+          description: ""
+        children:
+          - name: Auth
+            meta:
+              id: fld_75946c5d58514f659448aa6ff5de67ba
+              created: 1752421813405
+              modified: 1752432212589
+              sortKey: -1752432204003
+              description: ""
+            children:
+              - url: "{{ _.BASE_URL }}/login"
+                name: Login
+                meta:
+                  id: req_4d98466aef1b4a30b37669398b05184d
+                  created: 1752421813407
+                  modified: 1752423195687
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752417894084
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |
+                    {
+                      "email": "delivery1@example.com",
+                      "password": "password"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/logout"
+                name: Logout
+                meta:
+                  id: req_8b22bed827d74ba682bc80f9fffaf9fc
+                  created: 1752421813410
+                  modified: 1752433829733
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752390568829.5
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: ""
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_DELIVERY_MAN_1 }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - url: "{{ _.BASE_URL }}/delivery-person/status"
+            name: Delivery Man Status
+            meta:
+              id: req_bc3dd9de198d409fb19657463dcf5f1a
+              created: 1752432076313
+              modified: 1752433814578
+              isPrivate: false
+              description: ""
+              sortKey: -1752432203903
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                    "is_available": true,
+                    "current_latitude": 23.7925,
+                    "current_longitude": 90.4125
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.3.0
+            authentication:
+              type: bearer
+              token: "{{ _.TKN_DELIVERY_MAN_1 }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Person 2
+        meta:
+          id: fld_0e70774e0c1149e4b73149dc74b446a8
+          created: 1752432249932
+          modified: 1752432249932
+          sortKey: -1752431703886.5
+          description: ""
+        children:
+          - name: Auth
+            meta:
+              id: fld_72a97286f22e475ab05c8bcc61a58761
+              created: 1752432249934
+              modified: 1752432249934
+              sortKey: -1752432204003
+              description: ""
+            children:
+              - url: "{{ _.BASE_URL }}/login"
+                name: Login
+                meta:
+                  id: req_b545635540b6450aa9a8dc04ffb11383
+                  created: 1752432249936
+                  modified: 1752432249936
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752417894084
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |
+                    {
+                      "email": "delivery1@example.com",
+                      "password": "password"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.BASE_URL }}/logout"
+                name: Logout
+                meta:
+                  id: req_bbe9ed0584e4439884d07a2691e0cc92
+                  created: 1752432249938
+                  modified: 1752433867009
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1752390568829.5
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: ""
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.2.0
+                authentication:
+                  type: bearer
+                  token: "{{ _.TKN_DELIVERY_MAN_2 }}"
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - url: "{{ _.BASE_URL }}/delivery-person/status"
+            name: Delivery Man Status
+            meta:
+              id: req_69f1b186cf4a4d50872fd76277272eee
+              created: 1752432249945
+              modified: 1752433854842
+              isPrivate: false
+              description: ""
+              sortKey: -1752432203903
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                    "is_available": true,
+                    "current_latitude": 23.8759,
+                    "current_longitude": 90.3979
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.3.0
+            authentication:
+              type: bearer
+              token: "{{ _.TKN_DELIVERY_MAN_2 }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - url: "{{ _.BASE_URL }}/orders/1/assign"
+    name: Assign Order 1
+    meta:
+      id: req_2faf441be2634ffc85cf99a8a4577436
+      created: 1752432613806
+      modified: 1752435463488
+      isPrivate: false
+      description: ""
+      sortKey: -1747280332929.584
+    method: POST
+    headers:
+      - name: User-Agent
+        value: insomnia/11.3.0
+    authentication:
+      type: bearer
+      token: "{{ _.TKN_RESTAURANT }}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.BASE_URL }}/assignments/1/accept"
+    name: Accept Order By Delivery Man
+    meta:
+      id: req_ff1ebcf4e67e4d4baad6566faf435850
+      created: 1752432661282
+      modified: 1752435497773
+      isPrivate: false
+      description: ""
+      sortKey: -1747280332829.584
+    method: POST
+    headers:
+      - name: User-Agent
+        value: insomnia/11.3.0
+    authentication:
+      type: bearer
+      token: "{{ _.TKN_DELIVERY_MAN_1 }}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.BASE_URL }}/orders/1/delivery-status"
+    name: "Track Deliver Man Status: Restaurant"
+    meta:
+      id: req_ac429cd0221046aba6dfdd668a1a73c0
+      created: 1752435505130
+      modified: 1752435690023
+      isPrivate: false
+      description: ""
+      sortKey: -1747280332729.584
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.3.0
+    authentication:
+      type: bearer
+      token: "{{ _.TKN_RESTAURANT }}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.BASE_URL }}/orders/1/delivery-status"
+    name: "Track Deliver Man Status: Customer"
+    meta:
+      id: req_92da97be3d6c493fbf023cea7ff7884b
+      created: 1752435675887
+      modified: 1752435704334
+      isPrivate: false
+      description: ""
+      sortKey: -1735337940880.292
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.3.0
+    authentication:
+      type: bearer
+      token: "{{ _.TKN_CUSTOMER }}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_256e5556e902cd3b22c073623e404aaf2c16aaed
+    created: 1752173328824
+    modified: 1752173328824
+environments:
+  name: Base Environment
+  meta:
+    id: env_256e5556e902cd3b22c073623e404aaf2c16aaed
+    created: 1752173328793
+    modified: 1752433880212
+    isPrivate: false
+  data:
+    BASE_URL: http://127.0.0.1:8000/api/v1
+    TKN_RESTAURANT: c6XSSsJiNI5OtqvbGDBJFRUL9tjBoWs6Oudll3iw7274d1c1
+    TKN_DELIVERY_MAN_1: ""
+    TKN_DELIVERY_MAN_2: ""
+    TKN_CUSTOMER: ""

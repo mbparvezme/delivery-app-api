@@ -28,4 +28,16 @@ class OrderPolicy
         return $user->id === $order->user_id && $order->status === 'pending';
     }
 
+    /**
+     * Determine whether the user can track the delivery of the order.
+     *
+     * @param  \App\Models\V1\User  $user
+     * @param  \App\Models\V1\Order  $order
+     * @return bool
+     */
+    public function trackDelivery(User $user, Order $order): bool
+    {
+        return $user->id === $order->user_id || $user->id === $order->restaurant->user_id;
+    }
+
 }

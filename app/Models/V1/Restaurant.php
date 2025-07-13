@@ -24,6 +24,7 @@ class Restaurant extends BaseModel
         'address',
         'latitude',
         'longitude',
+        'active'
     ];
 
     // Add this method to link the factory
@@ -40,6 +41,7 @@ class Restaurant extends BaseModel
     protected $casts = [
         'latitude' => 'decimal:8',
         'longitude' => 'decimal:8',
+        'active' => 'boolean',
     ];
 
     /**
@@ -64,5 +66,13 @@ class Restaurant extends BaseModel
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Get the active delivery zones of the restaurant.
+     */
+    public function activeDeliveryZones(): HasMany
+    {
+        return $this->deliveryZones()->active();
     }
 }

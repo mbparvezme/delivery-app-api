@@ -22,7 +22,7 @@ class DeliveryZoneController extends Controller
      */
     public function index(Restaurant $restaurant): JsonResponse
     {
-        Gate::authorize('viewAny', $restaurant);
+        Gate::authorize('viewAnyZone', $restaurant);
         return response()->json($restaurant->deliveryZones);
     }
 
@@ -31,7 +31,7 @@ class DeliveryZoneController extends Controller
      */
     public function store(StoreDeliveryZoneRequest $request, Restaurant $restaurant): JsonResponse
     {
-        Gate::authorize('create', $restaurant);
+        Gate::authorize('createZone', [DeliveryZone::class, $restaurant]);
         $validatedData = $request->validated();
         $deliveryZone = $this->deliveryZoneService->createZone($restaurant, $validatedData);
         return response()->json($deliveryZone, 201); // 201 Created
@@ -42,7 +42,7 @@ class DeliveryZoneController extends Controller
      */
     public function show($restaurant, $zone): JsonResponse
     {
-        Gate::authorize('view', [$restaurant, $zone]);
+        Gate::authorize('viewZone', [$restaurant, $zone]);
         $data = DeliveryZone::select("id", "restaurant_id", "name", "type", "value")->with("restaurant:id,name,address,latitude,longitude")->findOrFail($zone);
         return response()->json($data);
     }
@@ -52,7 +52,7 @@ class DeliveryZoneController extends Controller
      */
     public function update(UpdateDeliveryZoneRequest $request, Restaurant $restaurant, DeliveryZone $zone): JsonResponse
     {
-        Gate::authorize('update', [$restaurant, $zone]);
+        Gate::authorize('updateZone', [$restaurant, $zone]);
         $validatedData = $request->validated();
         $updatedZone = $this->deliveryZoneService->updateZone($zone, $validatedData);
         return response()->json($updatedZone);
@@ -63,7 +63,7 @@ class DeliveryZoneController extends Controller
      */
     public function destroy(Request $request, Restaurant $restaurant, DeliveryZone $zone): JsonResponse
     {
-        Gate::authorize('delete', [$restaurant, $zone]);
+        Gate::authorize('deleteZone', [$restaurant, $zone]);
         $this->deliveryZoneService->deleteZone($zone);
         return response()->json(null, 204);
     }

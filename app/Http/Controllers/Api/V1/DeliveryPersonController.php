@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Delivery\UpdateDeliveryPersonStatusRequest;
 use App\Services\V1\DeliveryPersonService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class DeliveryPersonController extends Controller
 {

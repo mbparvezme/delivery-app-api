@@ -4,63 +4,48 @@ namespace App\Policies\V1;
 
 use App\Models\User;
 use App\Models\V1\DeliveryZone;
-use Illuminate\Auth\Access\Response;
+use App\Models\V1\Restaurant;
 
 class DeliveryZonePolicy
 {
+
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAnyZone(User $user, Restaurant $restaurant): bool
     {
-        return false;
+        return $user->id === $restaurant->user_id;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, DeliveryZone $deliveryZone): bool
+    public function viewZone(User $user, Restaurant $restaurant, DeliveryZone $zone): bool
     {
-        return false;
+        return $user->id === $restaurant->user_id && $zone->restaurant_id === $restaurant->id;
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function createZone(User $user, Restaurant $restaurant): bool
     {
-        return false;
+        return $user->id === $restaurant->user_id;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, DeliveryZone $deliveryZone): bool
+    public function updateZone(User $user, Restaurant $restaurant, DeliveryZone $zone): bool
     {
-        return false;
+        return $user->id === $restaurant->user_id && $zone->restaurant_id === $restaurant->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, DeliveryZone $deliveryZone): bool
+    public function deleteZone(User $user, Restaurant $restaurant, DeliveryZone $zone): bool
     {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, DeliveryZone $deliveryZone): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, DeliveryZone $deliveryZone): bool
-    {
-        return false;
+        return $user->id === $restaurant->user_id && $zone->restaurant_id === $restaurant->id;
     }
 }

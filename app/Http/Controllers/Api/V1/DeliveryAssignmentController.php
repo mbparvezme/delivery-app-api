@@ -7,6 +7,7 @@ use App\Models\V1\Order;
 use App\Models\V1\OrderAssignment;
 use App\Services\V1\DeliveryAssignmentService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Gate;
 
 class DeliveryAssignmentController extends Controller
 {
@@ -16,7 +17,10 @@ class DeliveryAssignmentController extends Controller
 
     public function assign(Order $order): JsonResponse
     {
-        // Gate::authorize('assign', $order->restaurant);
+
+        // return response()->json($order->restaurant);
+
+        Gate::authorize('assign', $order->restaurant);
 
         $assignment = $this->assignmentService->assignOrderToNearest($order);
         if (!$assignment) {
@@ -39,7 +43,8 @@ class DeliveryAssignmentController extends Controller
      */
     public function accept(OrderAssignment $order_assignment): JsonResponse
     {
-        // Gate::authorize('respond', $order_assignment);
+        Gate::authorize('respond', $order_assignment);
+
         $this->assignmentService->acceptAssignment($order_assignment);
         return response()->json(['message' => 'Assignment accepted successfully.']);
     }
@@ -52,7 +57,8 @@ class DeliveryAssignmentController extends Controller
      */
     public function reject(OrderAssignment $order_assignment): JsonResponse
     {
-        // Gate::authorize('respond', $order_assignment);
+        Gate::authorize('respond', $order_assignment);
+
         $nextAssignment = $this->assignmentService->rejectAssignment($order_assignment);
         if (!$nextAssignment) {
             return response()->json(['message' => 'Assignment rejected. No other delivery personnel found.']);
