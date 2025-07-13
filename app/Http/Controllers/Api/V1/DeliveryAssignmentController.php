@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Models\V1\Order;
 use App\Models\V1\OrderAssignment;
 use App\Services\V1\DeliveryAssignmentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
 
-class DeliveryAssignmentController extends Controller
+class DeliveryAssignmentController extends BaseController
 {
 
     public function __construct(protected DeliveryAssignmentService $assignmentService) {}
 
-
     public function assign(Order $order): JsonResponse
     {
-
-        // return response()->json($order->restaurant);
-
         Gate::authorize('assign', $order->restaurant);
 
         $assignment = $this->assignmentService->assignOrderToNearest($order);

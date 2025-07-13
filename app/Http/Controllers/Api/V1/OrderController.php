@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\V1\Order\StoreOrderRequest;
 use App\Models\User;
 use App\Models\V1\Order;
@@ -11,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
 
     public function __construct(protected OrderPlacementService $orderPlacementService) {}

@@ -49,7 +49,7 @@ class BaseModel extends Model
      *
      * @return bool
      */
-    public function deactivate()
+    public function scopeDeactivate()
     {
         $this->active = 0;
         return $this->save();
@@ -62,7 +62,7 @@ class BaseModel extends Model
      *
      * @return bool
      */
-    public function reactivate()
+    public function scopeReactivate()
     {
         $this->active = 1;
         return $this->save();

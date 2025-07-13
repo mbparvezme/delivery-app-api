@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\V1\Zone\StoreDeliveryZoneRequest;
 use App\Http\Requests\V1\Zone\UpdateDeliveryZoneRequest;
 use App\Models\V1\DeliveryZone;
@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
-class DeliveryZoneController extends Controller
+class DeliveryZoneController extends BaseController
 {
 
     public function __construct(protected DeliveryZoneService $deliveryZoneService){}

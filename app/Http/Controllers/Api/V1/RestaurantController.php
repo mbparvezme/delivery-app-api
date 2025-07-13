@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\V1\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\V1\Restaurant\UpdateRestaurantRequest;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use App\Models\V1\Restaurant;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
 
-class RestaurantController extends Controller
+class RestaurantController extends BaseController
 {
 
     public function index(): JsonResponse

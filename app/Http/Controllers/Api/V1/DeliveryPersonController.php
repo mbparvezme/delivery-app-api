@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\V1\Delivery\UpdateDeliveryPersonStatusRequest;
 use App\Services\V1\DeliveryPersonService;
 use Illuminate\Http\JsonResponse;
 
-class DeliveryPersonController extends Controller
+class DeliveryPersonController extends BaseController
 {
 
     public function __construct(protected DeliveryPersonService $deliveryPersonService) {}
-
 
     /**
      * Handle the request to update a delivery person's status.
@@ -26,6 +25,5 @@ class DeliveryPersonController extends Controller
         $deliveryMan = $this->deliveryPersonService->updateStatus($user, $validatedData);
         return response()->json($deliveryMan);
     }
-
 
 }
