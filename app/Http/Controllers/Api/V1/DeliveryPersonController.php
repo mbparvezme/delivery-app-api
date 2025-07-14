@@ -24,6 +24,7 @@ class DeliveryPersonController extends BaseController
         $user = $request->user();
         $deliveryMan = $this->deliveryPersonService->updateStatus($user, $validatedData);
         return response()->json($deliveryMan);
+        return response()->json($deliveryMan);
     }
 
 }

@@ -63,5 +63,20 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+
+        DB::table('delivery_men')->insert([
+            [
+                'user_id' => 4,
+                'is_available' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 5,
+                'is_available' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }
