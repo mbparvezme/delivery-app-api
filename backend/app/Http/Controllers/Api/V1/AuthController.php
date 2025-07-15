@@ -33,7 +33,17 @@ class AuthController extends BaseController
         $user = User::where('email', $request['email'])->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['message' => 'Login successful', 'user' => $user, 'access_token' => $token]);
+        $cookie = cookie(
+            'auth_token',   // Name of the cookie
+            $token,         // The token value
+            60 * 24 * 7,    // Expires in 7 days (in minutes)
+            '/',            // Path
+            null,           // Domain (null means current domain)
+            true,           // Secure (only send over HTTPS)
+            true            // HttpOnly (cannot be accessed by JavaScript)
+        );
+
+        return response()->json(['message' => 'Login successful', 'user' => $user])->withCookie($cookie);
     }
 
     /**
