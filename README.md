@@ -221,6 +221,20 @@ GET /api/v1/orders/{order_id}/delivery-status
 
 ---
 
+## API Workflow Step By Step
+
+ 
+1. Login as restaurant owner and add "zones" of the restaurants:  `api/v1/restaurants/{restaurant_id}/zones`
+2. Login as delivery man and update "status" and "location":  `api/v1/delivery-person/status`
+3. Login as customer and place an order: `api/v1/orders`
+4. Restaurant owner will assign the order to the available delivery person:  `api/v1/orders/{order_id}/assign`
+5. Delivery person will accept/reject the order:  `api/v1/assignments/{order_assignment_id}/{accept|reject}`
+6. Restaurant owner or customer will track the location of the delivery man: `api/v1/orders/{order_id}/delivery-status`
+
+
+
+---
+
 ## Testing the API with Insomnia
 
 To make API testing easier, an **Insomnia** API client export is provided.
@@ -247,7 +261,7 @@ To make API testing easier, an **Insomnia** API client export is provided.
 
 This project includes an interactive HTML file for guided API testing.
 
-- File: [`backend/api-test-workflow.html`](#interactive-api-test-workflow)
+- File: [`api-test-workflow.html`](#interactive-api-test-workflow)
 - Just open it in your browser and follow the step-by-step instructions to test the API.
 
 ---
