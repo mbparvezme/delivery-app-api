@@ -247,7 +247,7 @@ To make API testing easier, an **Insomnia** API client export is provided.
 
 This project includes an interactive HTML file for guided API testing.
 
-- File: [`api-test-workflow.html`](#interactive-api-test-workflow)
+- File: [`backend/api-test-workflow.html`](#interactive-api-test-workflow)
 - Just open it in your browser and follow the step-by-step instructions to test the API.
 
 ---
