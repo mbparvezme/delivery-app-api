@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 
-    // Public routes: Just dor demo purpose
     Route::get('restaurants', [RestaurantController::class, 'index']);
     Route::get('restaurants/{restaurant}', [RestaurantController::class, 'show']);
 
@@ -46,3 +45,6 @@ Route::prefix('v1')->group(function () {
     });
 });
 
+Route::fallback(function () {
+    return response()->json(['message' => 'Not Found.'], 404);
+});

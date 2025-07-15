@@ -42,7 +42,6 @@ class RestaurantPolicy
      */
     public function assign(User $user, Restaurant $restaurant): bool
     {
-        // Only the user who owns the restaurant can assign orders for it.
         return $user->id === $restaurant->user_id;
     }
 }

@@ -11,7 +11,6 @@ class OrderPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the model.
      * A user can view an order if they are the one who created it.
      */
     public function view(User $user, Order $order): bool
@@ -20,7 +19,6 @@ class OrderPolicy
     }
 
     /**
-     * Determine whether the user can cancel the model.
      * A user can cancel an order if they own it AND its status is 'pending'.
      */
     public function cancel(User $user, Order $order): bool

@@ -119,32 +119,21 @@ class DeliveryZoneService
      */
     private function isInsideRadius(float $customerLat, float $customerLng, DeliveryZone $zone): bool
     {
-        // Get the center point (the restaurant's location) from the zone's relationship.
         $centerLat = $zone->restaurant->latitude;
         $centerLng = $zone->restaurant->longitude;
 
-        // The 'value' field directly holds the radius in meters.
         $radiusInMeters = $zone->value;
-
-        // Earth's radius in meters.
         $earthRadius = 6371000;
 
-        // Convert all latitude and longitude values from degrees to radians for the calculation.
         $latFrom = deg2rad($centerLat);
         $lonFrom = deg2rad($centerLng);
         $latTo = deg2rad($customerLat);
         $lonTo = deg2rad($customerLng);
 
-        // Calculate the differences in coordinates.
-        // The longitude difference is adjusted by the cosine of the average latitude
-        // to compensate for the Earth's shape.
         $x = ($lonTo - $lonFrom) * cos(($latFrom + $latTo) / 2);
         $y = ($latTo - $latFrom);
-
-        // Use the Pythagorean theorem to calculate the straight-line distance.
         $distance = sqrt($x * $x + $y * $y) * $earthRadius;
 
-        // Return true if the calculated distance is within the specified radius.
         return $distance <= $radiusInMeters;
     }
 

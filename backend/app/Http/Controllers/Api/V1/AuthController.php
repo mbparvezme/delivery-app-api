@@ -43,7 +43,7 @@ class AuthController extends BaseController
             true            // HttpOnly (cannot be accessed by JavaScript)
         );
 
-        return response()->json(['message' => 'Login successful', 'user' => $user])->withCookie($cookie);
+        return response()->json(['message' => 'Login successful', 'user' => $user, 'token' => $token])->withCookie($cookie);
     }
 
     /**
